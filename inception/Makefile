@@ -12,6 +12,7 @@ clean:
 	sudo docker-compose -f srcs/docker-compose.yaml down --volumes
 
 prune: clean
+	sudo rm -rf ~/data/mariadb ~/data/wordpress
 	sudo docker system prune -a
 
 re: prune all
