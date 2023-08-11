@@ -46,12 +46,12 @@ networks:
 
 volumes:
   mariadb:
-    name: mysql
+    name: mariadb
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/$USERNAME/data/mysql
+      device: /home/$USERNAME/data/mariadb
 
 #   wordpress:
 #     name: wordpress
