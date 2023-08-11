@@ -1,6 +1,8 @@
 NAME = inception
 
 all:
+	sudo mkdir -p /home/$USERNAME/data/mariadb
+	sudo mkdir -p /home/$USERNAME/data/wordpress
 	sudo docker-compose -f srcs/docker-compose.yaml up --build
 
 stop:
