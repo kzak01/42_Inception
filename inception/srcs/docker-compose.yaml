@@ -6,8 +6,8 @@ services:
     container_name: mariadb
     ports:
       - "3306:3306"
-    # volumes:
-    #   - "mariadb:/var/lib/mysql"
+    volumes:
+      - "mariadb:/var/lib/mysql"
     networks:
       - inception
     restart: always
@@ -44,14 +44,14 @@ networks:
   inception:
     name: inception
 
-# volumes:
-#   mariadb:
-#     name: mariadb
-#     driver: local
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /home/$USER/data/mariadb
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/$USER/data/mariadb
 
 #   wordpress:
 #     name: wordpress
