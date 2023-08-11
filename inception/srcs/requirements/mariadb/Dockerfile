@@ -1,8 +1,8 @@
-FROM alpine:3.13
+FROM alpine:3.17
 
 RUN	apk update && apk upgrade && apk add --no-cache \
-	mariadb \
-	mariadb-client
+	mysql \
+	mysql-client
 
 COPY ./conf/configure.sh /tmp/configure.sh
 
