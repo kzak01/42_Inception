@@ -8,8 +8,8 @@ services:
       - "3306:3306"
     # volumes:
     #   - "mariadb:/var/lib/mysql"
-    # networks:
-    #   - inception
+    networks:
+      - inception
     restart: always
     env_file:
       - .env
@@ -40,9 +40,9 @@ services:
   #     - inception
   #   restart: always
 
-# networks:
-#   inception:
-#     name: inception_nw
+networks:
+  inception:
+    name: inception
 
 # volumes:
 #   mariadb:
