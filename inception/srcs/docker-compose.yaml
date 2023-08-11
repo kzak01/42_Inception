@@ -42,16 +42,16 @@ services:
 
 networks:
   inception:
-    name: inception_w
+    name: inception
 
 volumes:
   mariadb:
-    name: mariadb
+    name: mysql
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/$USERNAME/data/mariadb
+      device: /home/$USERNAME/data/mysql
 
 #   wordpress:
 #     name: wordpress
