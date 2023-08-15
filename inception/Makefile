@@ -13,7 +13,7 @@ clean:
 
 prune: clean
 	sudo rm -rf ~/data/mariadb ~/data/wordpress
-	sudo docker system prune -a -y
+	sudo docker system prune -a
 
 re: prune all
 
