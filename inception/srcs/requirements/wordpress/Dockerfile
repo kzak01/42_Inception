@@ -1,6 +1,6 @@
 FROM	alpine:3.17
 
-RUN	apk update -y && apk upgrade -y && apk add --no-cache \
+RUN	apk update && apk upgrade && apk add --no-cache \
 	apt install php php-fpm php-mysql php-gd php-curl php-zip -y \
 	apt install wget -y \
 	apt install myqsl-client -y \
