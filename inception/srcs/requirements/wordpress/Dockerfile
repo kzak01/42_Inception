@@ -6,7 +6,7 @@ RUN	apk update -y && apk upgrade -y && apk add --no-cache && \
 	apt install myqsl-client -y && \
 	mkdir -p /var/www/html && \
 	chown -R nginx:nginx /var/www/html && \
-	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; && \
+	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; \
 	mkdir -p /run/php && chown nginx:nginx /run/php
 
 COPY tools/configure.sh /tmp/configure.sh
