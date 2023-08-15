@@ -14,19 +14,6 @@ services:
     env_file:
       - .env
 
-  # nginx:
-    # build: ./requirements/nginx/
-    # container_name: nginx
-    # ports: 
-      # - "443:443"
-    # volumes:
-      # - wordpress:/var/www/html
-    # depends_on:
-      # - wordpress
-    # networks:
-      # - inception
-    # restart: always
-
   wordpress:
     build: ./requirements/wordpress/
     container_name: wordpress
@@ -39,6 +26,19 @@ services:
     networks:
       - inception
     restart: always
+
+  # nginx:
+    # build: ./requirements/nginx/
+    # container_name: nginx
+    # ports: 
+      # - "443:443"
+    # volumes:
+      # - wordpress:/var/www/html
+    # depends_on:
+      # - wordpress
+    # networks:
+      # - inception
+    # restart: always
 
 networks:
   inception:

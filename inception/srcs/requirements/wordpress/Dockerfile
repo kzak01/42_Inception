@@ -1,9 +1,9 @@
-FROM	alpine:3.17
+FROM	debian:buster
 
 RUN	apk update -y && apk upgrade -y && apk add --no-cache && \
 	apt install php php-fpm php-mysql php-gd php-curl php-zip -y && \
 	apt install wget -y && \
-	apt install myqsl-client -y && \
+	apt install mariadb-client -y && \
 	mkdir -p /var/www/html && \
 	chown -R nginx:nginx /var/www/html && \
 	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; \
