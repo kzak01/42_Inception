@@ -27,18 +27,18 @@ services:
       # - inception
     # restart: always
 
-  # wordpress:
-  #   build: ./requirements/wordpress/
-  #   container_name: wordpress
-  #   ports: 
-  #     - "9000:9000"
-  #   volumes:
-  #     - wordpress:/var/www/html
-  #   depends_on:
-  #     - mariadb
-  #   networks:
-  #     - inception
-  #   restart: always
+  wordpress:
+    build: ./requirements/wordpress/
+    container_name: wordpress
+    ports: 
+      - "9000:9000"
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    restart: always
 
 networks:
   inception:
@@ -53,10 +53,10 @@ volumes:
       o: bind
       device: /home/$USERNAME/data/mariadb
 
-#   wordpress:
-#     name: wordpress
-#     driver: local
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /home/$USER/data/wordpress
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/$USERNAME/data/wordpress
