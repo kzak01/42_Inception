@@ -1,8 +1,6 @@
 #!/bin/sh
 
-echo "hello from wordpress script!"
-
-CONF=/var/www/html/wp-config.php
+CONF=/var/www/html/wordpress/wp-config.php
 if [ -f "$CONF" ]; then
 	echo "wordpress already configured"
 else
@@ -20,4 +18,4 @@ else
 fi
 
 echo "Wordpress-PHP starting"
-php-fpm7.3 -F
+/usr/sbin/php-fpm7 -F -R
