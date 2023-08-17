@@ -2,13 +2,12 @@ version: "3"
 
 services:
   mariadb:
-    # image: "i-mariadb:1.0.0"
     build: ./requirements/mariadb/
     container_name: mariadb
     ports:
       - "3306:3306"
-    # volumes:
-    #   - "mariadb:/var/lib/mysql"
+    volumes:
+      - "mariadb:/var/lib/mysql"
     networks:
       - inception
     restart: always
@@ -16,7 +15,6 @@ services:
       - .env
 
   # wordpress:
-  #   # image: "i-wordpress:1.0.0"
   #   build: ./requirements/wordpress/
   #   container_name: wordpress
   #   ports: 
@@ -32,7 +30,6 @@ services:
   #     - .env
 
   # nginx:
-  #   # image: "i-nginx:1.0.0"
   #   build: ./requirements/nginx/
   #   container_name: nginx
   #   ports: 
@@ -53,12 +50,12 @@ networks:
 
 volumes:
   mariadb:
-    name: mariadb
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/$$USERNAME/data/mariadb
+    # name: mariadb
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/$$USERNAME/data/mariadb
 
   # wordpress:
   #   name: wordpress
