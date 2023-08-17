@@ -50,12 +50,12 @@ networks:
 
 volumes:
   mariadb:
-    # name: mariadb
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/$$USERNAME/data/mariadb
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/$$USERNAME/data/mariadb
 
   # wordpress:
   #   name: wordpress
