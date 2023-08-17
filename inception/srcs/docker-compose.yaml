@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    image: "i-mariadb:1.0.0"
+    # image: "i-mariadb:1.0.0"
     build: ./requirements/mariadb/
     container_name: mariadb
     ports:
@@ -15,35 +15,37 @@ services:
     env_file:
       - .env
 
-  wordpress:
-    image: "i-wordpress:1.0.0"
-    build: ./requirements/wordpress/
-    container_name: wordpress
-    ports: 
-      - "9000:9000"
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - mariadb
-    networks:
-      - inception
-    restart: always
-    env_file:
-      - .env
+  # wordpress:
+  #   # image: "i-wordpress:1.0.0"
+  #   build: ./requirements/wordpress/
+  #   container_name: wordpress
+  #   ports: 
+  #     - "9000:9000"
+  #   volumes:
+  #     - wordpress:/var/www/html
+  #   depends_on:
+  #     - mariadb
+  #   networks:
+  #     - inception
+  #   restart: always
+  #   env_file:
+  #     - .env
 
-  nginx:
-    image: "i-nginx:1.0.0"
-    build: ./requirements/nginx/
-    container_name: nginx
-    ports: 
-      - "443:443"
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - wordpress
-    networks:
-      - inception
-    restart: always
+  # nginx:
+  #   # image: "i-nginx:1.0.0"
+  #   build: ./requirements/nginx/
+  #   container_name: nginx
+  #   ports: 
+  #     - "443:443"
+  #   volumes:
+  #     - wordpress:/var/www/html
+  #   depends_on:
+  #     - wordpress
+  #   networks:
+  #     - inception
+  #   restart: always
+  #   env_file:
+  #     - .env
 
 networks:
   inception:
@@ -56,12 +58,12 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/$USERNAME/data/mariadb
+      device: /home/$$USERNAME/data/mariadb
 
-  wordpress:
-    name: wordpress
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/$USERNAME/data/wordpress
+  # wordpress:
+  #   name: wordpress
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: /home/$$USERNAME/data/wordpress
