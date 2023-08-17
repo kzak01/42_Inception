@@ -2,6 +2,7 @@ version: "3"
 
 services:
   mariadb:
+    image: "i-mariadb:1.0.0"
     build: ./requirements/mariadb/
     container_name: mariadb
     ports:
@@ -15,6 +16,7 @@ services:
       - .env
 
   wordpress:
+    image: "i-wordpress:1.0.0"
     build: ./requirements/wordpress/
     container_name: wordpress
     ports: 
@@ -30,6 +32,7 @@ services:
       - .env
 
   nginx:
+    image: "i-nginx:1.0.0"
     build: ./requirements/nginx/
     container_name: nginx
     ports: 
