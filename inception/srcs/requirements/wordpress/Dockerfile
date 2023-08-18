@@ -63,6 +63,6 @@ COPY tools/configure.sh /tmp/configure.sh
 COPY conf/www.conf /etc/php7/php-fpm.d/
 
 # Remove the entrypoint since we'll start services differently
-# ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
+ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
 # -D -H -h /var/www/html -s /sbin/nologin -G nginx inazanf
