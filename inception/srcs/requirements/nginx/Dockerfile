@@ -4,9 +4,9 @@ RUN	apk update && apk upgrade && \
 		apk add --no-cache nginx openssl
 
 RUN	mkdir -p /etc/nginx/ssl
-RUN	mkdir -p /run/nginx
+# RUN	mkdir -p /run/nginx
 
-RUN	mkdir -p /var/www/html
+# RUN	mkdir -p /var/www/html
 
 RUN	openssl req -newkey rsa:2048 \
 		-x509 \

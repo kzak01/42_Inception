@@ -5,9 +5,9 @@ if [ -f "$CONF" ]; then
 	echo "wordpress already configured"
 else
 	sleep 5
-	# service php7.3-fpm start
-	mv /tmp/index.html /var/www/html/wordpress/index.html
-	# cd /var/www/html/
+	service php7.3-fpm start
+	# mv /tmp/index.html /var/www/html/wordpress/index.html
+	cd /var/www/html/
 	wp core download --allow-root
 	wp config create --dbname=$MARIADB_NAME --dbuser=$MARIADB_USER --dbpass=$MARIADB_PASS --dbhost=$MARIADB_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
 	wp db create --allow-root
@@ -18,4 +18,5 @@ else
 fi
 
 echo "Wordpress-PHP starting"
-/usr/sbin/php-fpm7 -F -R
+# /usr/sbin/php-fpm7 -F -R
+php-fpm7.3 -F
