@@ -1,9 +1,10 @@
 FROM alpine:3.17
 
 RUN apk update && apk upgrade && \
-	apk add --no-cache \
+	# apk add --no-cache \
+	apt-get -y install \
 	wget \
-	curl \
+	# curl \
 	bash \
 	php \
 	# php-cgi \
