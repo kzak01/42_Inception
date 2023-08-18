@@ -6,7 +6,7 @@ RUN apk update && apk upgrade && \
 	tar \
 	mysql-client \
 	redis \
-	php php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl && \
+	php php8 php8-curl php8-mysqli && \
 	addgroup -S nginx && adduser -S nginx && \ 
 	mkdir -p /var/www/html && \
 	chown -R nginx:nginx /var/www/html && \
@@ -14,7 +14,7 @@ RUN apk update && apk upgrade && \
 	mkdir -p /run/php && chown nginx:nginx /run/php
 
 COPY tools/configure.sh /tmp/configure.sh
-COPY conf/www.conf /etc/php7/php-fpm.d/
+COPY conf/www.conf /etc/php8/php-fpm.d/
 
 ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 

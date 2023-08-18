@@ -5,7 +5,7 @@ if [ -f "$CONF" ]; then
     echo "wordpress already configured"
 else
     # Avvia il servizio PHP-FPM
-    php-fpm7.3 -D
+    php-fpm8 -D
 
     # Attendi per consentire l'avvio di PHP-FPM
     sleep 5
@@ -20,9 +20,9 @@ else
     wp theme activate twentytwentythree --allow-root
 
     # Arresta il servizio PHP-FPM
-    pkill php-fpm7.3
+    pkill php-fpm8
 fi
 
 echo "Wordpress-PHP starting"
 # Avvia PHP-FPM in modalità foreground
-php-fpm7.3 -F
+php-fpm8 -F
