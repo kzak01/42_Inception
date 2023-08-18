@@ -15,12 +15,12 @@ RUN apk update && apk upgrade && apk add --no-cache \
 	# redis \
 	# php-redis \
 	# tar \
-	mysql-client && \
-	addgroup -S nginx && adduser -S nginx && \ 
-	mkdir -p /var/www/html && \
-	chown -R www-data:www-data /var/www/html && \
-	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; && \
-	mkdir -p /run/php && chown www-data:www-data /run/php
+	# mysql-client && \
+	# addgroup -S nginx && adduser -S nginx && \ 
+	# mkdir -p /var/www/html && \
+	# chown -R www-data:www-data /var/www/html && \
+	# cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; && \
+	# mkdir -p /run/php && chown www-data:www-data /run/php
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
