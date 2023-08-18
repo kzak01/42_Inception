@@ -1,9 +1,9 @@
 FROM	alpine:3.17
 
 RUN	apk update && apk upgrade && apk add --no-cache
-RUN	apk install php php-fpm php-mysql php-gd php-curl php-zip -y
-RUN	apk install wget -y
-RUN	apk install mysql-client -y
+RUN	apk install php php-fpm php-mysql php-gd php-curl php-zip
+RUN	apk install wget
+RUN	apk install mysql-client
 RUN	mkdir -p /var/www/html
 RUN	chown -R nginx:nginx /var/www/html
 RUN	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;
