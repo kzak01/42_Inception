@@ -6,12 +6,12 @@ RUN apk update && apk upgrade && \
 	curl \
 	bash \
 	php \
-	php-cgi \
-	php-mysql \
-	php-fpm \
-	php-pdo \
-	php-gd php-cli \
-	php-mbstring \
+	# php-cgi \
+	# php-mysql \
+	# php-fpm \
+	# php-pdo \
+	# php-gd php-cli \
+	# php-mbstring \
 	redis \
 	php-redis \
 	tar \
