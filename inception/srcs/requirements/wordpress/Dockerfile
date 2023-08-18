@@ -5,7 +5,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
 	# wget \
 	# curl \
 	# bash \
-	php \
+	# php \
 	# php-cgi \
 	# php-mysql \
 	# php-fpm \
@@ -21,14 +21,14 @@ RUN apk update && apk upgrade && apk add --no-cache \
 	# chown -R www-data:www-data /var/www/html && \
 	# cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; && \
 	# mkdir -p /run/php && chown www-data:www-data /run/php
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-	&& chmod +x wp-cli.phar \
-	&& mv wp-cli.phar /usr/local/bin/wp
+# RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+# 	&& chmod +x wp-cli.phar \
+# 	&& mv wp-cli.phar /usr/local/bin/wp
 
-COPY conf/www.conf /etc/php/7.3/fpm/pool.d
-COPY tools/configure.sh /tmp/configure.sh
-RUN chmod +x /tmp/configure.sh
+# COPY conf/www.conf /etc/php/7.3/fpm/pool.d
+# COPY tools/configure.sh /tmp/configure.sh
+# RUN chmod +x /tmp/configure.sh
 
-ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
+# ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
 # -D -H -h /var/www/html -s /sbin/nologin -G nginx inazanf
