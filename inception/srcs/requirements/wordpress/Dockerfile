@@ -13,10 +13,9 @@ RUN apk update && apk upgrade && \
 	# php-gd php-cli \
 	# php-mbstring \
 	redis \
-	php-redis \
+	# php-redis \
 	tar \
-	mysql-client \
-	redis && \
+	mysql-client && \
 	addgroup -S nginx && adduser -S nginx && \ 
 	mkdir -p /var/www/html && \
 	chown -R www-data:www-data /var/www/html && \
