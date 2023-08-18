@@ -1,9 +1,10 @@
 FROM alpine:3.17
 
 RUN apk update && apk upgrade && \
-    apk add --no-cache php7 php7-fpm wget mysql-client \
+    apk add --no-cache \
 	wget \
 	tar \
+	mysql-client \
 	redis \
 	php7 \
 	php7-fpm \
