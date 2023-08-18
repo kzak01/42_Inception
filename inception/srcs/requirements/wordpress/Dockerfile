@@ -5,17 +5,17 @@ RUN apk update && apk upgrade && \
 	apt-get -y install \
 	wget \
 	# curl \
-	bash \
-	php \
+	# bash \
+	# php \
 	# php-cgi \
 	# php-mysql \
 	# php-fpm \
 	# php-pdo \
 	# php-gd php-cli \
 	# php-mbstring \
-	redis \
+	# redis \
 	# php-redis \
-	tar \
+	# tar \
 	mysql-client && \
 	addgroup -S nginx && adduser -S nginx && \ 
 	mkdir -p /var/www/html && \
