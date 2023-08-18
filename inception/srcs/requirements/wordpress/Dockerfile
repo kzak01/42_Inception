@@ -1,12 +1,11 @@
 FROM alpine:3.17
 
-RUN apk update && apk upgrade && \
-	apk add --no-cache \
+RUN apk update && apk upgrade && apk add --no-cache \
 	# apt-get -y install \
-	wget \
+	# wget \
 	# curl \
 	# bash \
-	# php \
+	php \
 	# php-cgi \
 	# php-mysql \
 	# php-fpm \
