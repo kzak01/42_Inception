@@ -6,7 +6,7 @@ RUN apk update && apk upgrade && \
 	tar \
 	mysql-client \
 	redis \
-	php && \
+	php php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl && \
 	addgroup -S nginx && adduser -S nginx && \ 
 	mkdir -p /var/www/html && \
 	chown -R nginx:nginx /var/www/html && \
