@@ -1,10 +1,10 @@
-FROM alpine:3.13
+FROM alpine:3.17
 
 RUN	apk update && apk upgrade && \
 	apk add --no-cache nginx openssl
 
 RUN	mkdir -p /etc/nginx/ssl
-# RUN	mkdir -p /run/nginx
+RUN	mkdir -p /run/nginx
 
 # RUN	mkdir -p /var/www/html
 
