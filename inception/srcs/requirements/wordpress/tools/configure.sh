@@ -1,10 +1,10 @@
 #!/bin/sh
 
-CONF=/var/www/html/wp-config.php
+CONF=/var/www/html/wordpress/wp-config.php
 if [ -f "$CONF" ]; then
     echo "wordpress already configured"
 else
-    # # Start PHP-FPM service
+    # Start PHP-FPM service
     php-fpm7.3 -D
 
     # Delay to allow PHP-FPM to start
@@ -21,21 +21,7 @@ else
 
     # Stop PHP-FPM service
     pkill php-fpm7.3
-	#Download wordpress and all config file
-	# wget http://wordpress.org/latest.tar.gz
-	# tar xfz latest.tar.gz
-	# mv wordpress/* .
-	# rm -rf latest.tar.gz
-	# rm -rf wordpress
-
-	# #Inport env variables in the config file
-	# sed -i "s/username_here/$MARIADB_USER/g" wp-config-sample.php
-	# sed -i "s/password_here/$MARIADB_PASS/g" wp-config-sample.php
-	# sed -i "s/localhost/$MARIADB_HOST/g" wp-config-sample.php
-	# sed -i "s/database_name_here/$MARIADB_NAME/g" wp-config-sample.php
-	# cp wp-config-sample.php wp-config.php
 fi
 
 echo "Wordpress-PHP starting"
-
-exec "$@"
+php-fpm7.3 -F
