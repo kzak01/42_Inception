@@ -4,13 +4,13 @@ CONF=/var/www/html/wordpress/wp-config.php
 if [ -f "$CONF" ]; then
     echo "wordpress already configured"
 else
-    # Avvia il servizio PHP-FPM
-    php-fpm8 -D
+    # Start PHP-FPM service
+    php-fpm7.3 -D
 
-    # Attendi per consentire l'avvio di PHP-FPM
+    # Delay to allow PHP-FPM to start
     sleep 5
 
-    # Configura WordPress
+    # Configure WordPress
     cd /var/www/html/
     wp core download --allow-root
     wp config create --dbname=$MARIADB_NAME --dbuser=$MARIADB_USER --dbpass=$MARIADB_PASS --dbhost=$MARIADB_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
@@ -19,10 +19,9 @@ else
     wp user create $WORDPRESS_USER $WORDPRESS_MAIL --role=author --user_pass=$WORDPRESS_PASS --allow-root
     wp theme activate twentytwentythree --allow-root
 
-    # Arresta il servizio PHP-FPM
-    pkill php-fpm8
+    # Stop PHP-FPM service
+    pkill php-fpm7.3
 fi
 
 echo "Wordpress-PHP starting"
-# Avvia PHP-FPM in modalità foreground
-php-fpm8 -F
+php-fpm7.3 -F
