@@ -1,8 +1,8 @@
 FROM alpine:3.17
 
 RUN apk update && apk upgrade && \
-	# apk add --no-cache \
-	apt-get -y install \
+	apk add --no-cache \
+	# apt-get -y install \
 	wget \
 	# curl \
 	# bash \
