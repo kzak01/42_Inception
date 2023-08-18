@@ -4,29 +4,40 @@ services:
   mariadb:
     build: ./requirements/mariadb/
     container_name: mariadb
-    ports: "3306:3306"
-    volumes: "mariadb:/var/lib/mysql"
-    networks: inception
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mariadb:/var/lib/mysql"
+    networks:
+      - inception
     restart: always
     env_file: .env
 
   wordpress:
     build: ./requirements/wordpress/
     container_name: wordpress
-    ports: "9000:9000"
-    volumes: wordpress:/var/www/html
-    depends_on: mariadb
-    networks: inception
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - inception
     restart: always
     env_file: .env
 
   nginx:
     build: ./requirements/nginx/
     container_name: nginx
-    ports: "443:443"
-    volumes: wordpress:/var/www/html
-    depends_on: wordpress
-    networks: inception
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - inception
     restart: always
     env_file: .env
 
