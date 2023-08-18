@@ -1,21 +1,21 @@
 FROM	alpine:3.17
 
-RUN	apk update && apk upgrade && apk add --no-cache && \
-	apk install php php-fpm php-mysql php-gd php-curl php-zip -y && \
-	apk install wget -y && \
-	apk install mysql-client -y && \
-	mkdir -p /var/www/html && \
-	chown -R nginx:nginx /var/www/html && \
-	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; \
-	mkdir -p /run/php && chown nginx:nginx /run/php
+RUN	apk update && apk upgrade && apk add --no-cache
+RUN	apk install php php-fpm php-mysql php-gd php-curl php-zip -y
+RUN	apk install wget -y
+RUN	apk install mysql-client -y
+RUN	mkdir -p /var/www/html
+RUN	chown -R nginx:nginx /var/www/html
+RUN	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;
+RUN	mkdir -p /run/php && chown nginx:nginx /run/php
 
 COPY tools/configure.sh /tmp/configure.sh
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d
 # COPY conf/index.html /tmp/index.html
 
-RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-	chmod +x wp-cli.phar && \
-	cp wp-cli.phar /usr/bin/wp
+RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN	chmod +x wp-cli.phar
+RUN	cp wp-cli.phar /usr/bin/wp
 
 WORKDIR /var/www/html
 
