@@ -16,9 +16,9 @@ RUN apk update && apk upgrade && \
 COPY tools/configure.sh /tmp/configure.sh
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar
-RUN cp wp-cli.phar /usr/bin/wp
+# RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+# RUN chmod +x wp-cli.phar
+# RUN cp wp-cli.phar /usr/bin/wp
 
 ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
