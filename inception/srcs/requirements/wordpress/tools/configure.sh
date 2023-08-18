@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONF=/var/www/html/wordpress/wp-config.php
+CONF=/var/www/html/wp-config.php
 if [ -f "$CONF" ]; then
     echo "wordpress already configured"
 else
