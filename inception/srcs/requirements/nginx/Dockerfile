@@ -4,10 +4,8 @@ RUN apk update && apk upgrade && apk add --no-cache nginx
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 
-RUN	mkdir -p /etc/nginx/ssl
-
 RUN apk add openssl \
-	&& mkdir /etc/nginx/ssl \
+	&& mkdir -p /etc/nginx/ssl \
 	&& cd /etc/nginx/ssl \
 	&& openssl req -x509 \
 			-nodes \
