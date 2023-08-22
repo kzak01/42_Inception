@@ -1,21 +1,18 @@
-FROM alpine:3.17
+FROM debian:buster
 
-RUN	apk update && apk upgrade && \
-	apk add --no-cache nginx openssl
+RUN apt-get update \
+    && apt-get install -y nginx openssl \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN	mkdir -p /etc/nginx/ssl
-RUN	mkdir -p /run/nginx
-RUN	mkdir -p /var/www/html
+RUN mkdir -p /etc/ssl
 
-RUN	openssl req -newkey rsa:2048 \
-	-x509 \
-	-sha256 \
-	-days 365 \
-	-nodes \
-	-keyout /etc/nginx/ssl/inception.key \
-	-out /etc/nginx/ssl/inception.pem \
-	-subj "/C=IT/ST=Italy/L=Rome/O=42Rome/OU=$USER/CN=$USER"
+COPY conf/my.conf /etc/nginx/nginx.conf
+COPY tools/runner.sh /bin/runner.sh
 
-COPY conf/nginx.conf /etc/nginx/conf.d
+#EXPOSE 80
+EXPOSE 443
+#EXPOSE 9000
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+# CMD /bin/bash -c "envsubst < /etc/nginx/my.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+# RUN chmod 777 /bin/runner.sh
+ENTRYPOINT [ "/bin/bash" , "/bin/runner.sh" ]
