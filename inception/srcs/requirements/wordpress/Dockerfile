@@ -1,19 +1,32 @@
-FROM alpine:3.17
+FROM debian:buster
 
-RUN	apk update && apk upgrade
-RUN	apk add curl php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer
-RUN	apk add php8-pecl-redis --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN apt update -y && apt upgrade -y 
 
-RUN	adduser -S nginx && addgroup -S nginx
+RUN apt install php php-fpm php-mysql php-gd php-curl php-zip -y
 
-RUN	mkdir -p /var/www/html
-COPY tools/configure.sh /tmp/configure.sh
-COPY conf/www.conf	/etc/php8/php-fpm.d/www.conf
+RUN apt install wget -y
 
-RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-		chmod +x wp-cli.phar && \
-		mv wp-cli.phar /usr/local/bin/wp
+# the client is installed only for terminal to terminal connection testing
+RUN apt install mariadb-client -y
 
-WORKDIR	/var/www/html/wordpress
+RUN mkdir -p /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+RUN cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;
 
-ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
+# this creates a folder and sets ownership for the fpm web socket
+RUN mkdir -p /run/php && chown www-data:www-data /run/php
+#COPY tools/www.conf /etc/php/7.3/fpm/pool.d
+
+COPY tools/runner.sh /bin/runner.sh
+#COPY tools/test.php /var/www/html/test.php
+#COPY tools/test.html /var/www/html/test.html
+COPY tools/www.conf /etc/php/7.3/fpm/pool.d
+#COPY tools/php.ini	/etc/php/
+
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN cp wp-cli.phar /usr/bin/wp
+
+WORKDIR /var/www/html
+
+ENTRYPOINT [ "/bin/bash" , "/bin/runner.sh" ]

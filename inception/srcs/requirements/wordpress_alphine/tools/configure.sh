@@ -47,7 +47,7 @@ else
   echo "[Inception-Wordpress] MariaDB is online"
 
   echo "[Inception-Wordpress] Setting up Wordpress website and users"
-  php wp-cli.phar core install --url=$DOMAIN_NAME/ --title=$WORDPRESS_TITLE --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASS --admin_email=$WORDPRESS_ADMIN_MAIL --skip-email --allow-root
+  php wp-cli.phar core install --url=$DOMAIN_NAME/ --title='$WORDPRESS_TITLE' --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASS --admin_email=$WORDPRESS_ADMIN_MAIL --skip-email --allow-root
   php wp-cli.phar user create $WORDPRESS_USER $WORDPRESS_MAIL --role=author --user_pass=$WORDPRESS_PASS --allow-root
   
   echo "[Inception-Wordpress] Installing WP Statistics"
