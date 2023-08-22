@@ -53,12 +53,6 @@ else
   echo "[Inception-Wordpress] Installing WP Statistics"
   php wp-cli.phar plugin install wp-statistics --activate
 
-  echo "[Inception-Wordpress] Installing Redis Cache"
-  php wp-cli.phar plugin install redis-cache --activate
-  php wp-cli.phar config set WP_REDIS_HOST redis
-  php wp-cli.phar config set WP_REDIS_PORT 6379
-  php wp-cli.phar redis enable
-
   rm wp-cli.phar
 fi
 
