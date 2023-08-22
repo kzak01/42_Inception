@@ -55,7 +55,7 @@ wp config create \
 	--dbpass=$MARIADB_PASS \
 	--dbhost=$MARIADB_HOST 
 wp core install \
-	--url=localhost \
+	--url="localhost" \
 	--title=$WORDPRESS_TITLE \
 	--admin_user=$WORDPRESS_ADMIN_USER \
 	--admin_password=$WORDPRESS_ADMIN_PASS \
