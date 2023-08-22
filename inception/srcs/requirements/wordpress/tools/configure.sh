@@ -39,7 +39,7 @@
 # /usr/sbin/php-fpm81 -F
 #!/bin/sh
 #db conection
-while ! mariadb -h $MYSQL_HOST -u $WP_DB_USER -p$WP_DB_PASSWORD $WP_DB_NAME --silent; do
+while ! mariadb -h $MARIADB_HOST -u $MARIADB_USER -p$MARIADB_PASS $MARIADB_DATABASE_NAME --silent; do
 	sleep 1 
 done 
 
@@ -51,18 +51,18 @@ wp core download --allow-root
 
 wp config create \
 	--dbname="wordpress" \
-	--dbuser=$WP_DB_USER \
-	--dbpass=$WP_DB_PASSWORD \
-	--dbhost=$MYSQL_HOST 
+	--dbuser=$MARIADB_USER \
+	--dbpass=$MARIADB_PASS \
+	--dbhost=$MARIADB_HOST 
 wp core install \
-	--url=$WP_ADMIN_EMAIL \
-	--title=$WP_TITLE \
-	--admin_user=$WP_USER \
-	--admin_password=$WP_PASSWORD \
-	--admin_email=$WP_EMAIL 
+	--url=$WORDPRESS_ADMIN_MAIL \
+	--title=$WORDPRESS_TITLE \
+	--admin_user=$WORDPRESS_ADMIN_USER \
+	--admin_password=$WORDPRESS_ADMIN_PASS \
+	--admin_email=$WORDPRESS_ADMIN_MAIL 
 wp user create \
-	$WP_TMP_USER \
-	$WP_TMP_EMAIL \
-	--user_pass=$WP_PASSWORD \
+	$WORDPRESS_USER \
+	$WORDPRESS_MAIL \
+	--user_pass=$WORDPRESS_PASS \
 
 exec "$@"
