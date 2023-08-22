@@ -49,7 +49,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN	mkdir -p /var/log/php-fpm && \
 	touch /var/log/php-fpm/error.log && \
 	touch /var/log/php-fpm/access.log && \
-	chown -R www-data:www-data /var/log/php-fpm && \
+	chown -R nginx:nginx /var/log/php-fpm && \
 	chmod -R 777 /var/log/php-fpm
 
 COPY ./tools/configure.sh /usr/local/bin/configure.sh
