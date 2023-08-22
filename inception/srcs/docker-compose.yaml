@@ -1,31 +1,31 @@
 version: "3"
 
 services:
-  mariadb:
-    build: ./requirements/mariadb/
-    container_name: mariadb
-    ports:
-      - "3306:3306"
-    volumes:
-      - "mariadb:/var/lib/mysql"
-    networks:
-      - inception
-    restart: always
-    env_file: .env
+  # mariadb:
+  #   build: ./requirements/mariadb/
+  #   container_name: mariadb
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - "mariadb:/var/lib/mysql"
+  #   networks:
+  #     - inception
+  #   restart: always
+  #   env_file: .env
 
-  wordpress:
-    build: ./requirements/wordpress/
-    container_name: wordpress
-    ports:
-      - "9000:9000"
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - mariadb
-    networks:
-      - inception
-    restart: always
-    env_file: .env
+  # wordpress:
+  #   build: ./requirements/wordpress/
+  #   container_name: wordpress
+  #   ports:
+  #     - "9000:9000"
+  #   volumes:
+  #     - wordpress:/var/www/html
+  #   depends_on:
+  #     - mariadb
+  #   networks:
+  #     - inception
+  #   restart: always
+  #   env_file: .env
 
   nginx:
     build: ./requirements/nginx/
@@ -34,8 +34,8 @@ services:
       - "443:443"
     volumes:
       - wordpress:/var/www/html
-    depends_on:
-      - wordpress
+    # depends_on:
+    #   - wordpress
     networks:
       - inception
     restart: always
@@ -43,21 +43,21 @@ services:
 
 networks:
   inception:
-    name: inception
+    # name: inception
 
 volumes:
   mariadb:
-    name: mariadb
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/$USERNAME/data/mariadb
+    # name: mariadb
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/$USERNAME/data/mariadb
 
   wordpress:
-    name: wordpress
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/$USERNAME/data/wordpress
+    # name: wordpress
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/$USERNAME/data/wordpress
