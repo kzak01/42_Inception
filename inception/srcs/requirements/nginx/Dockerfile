@@ -1,7 +1,7 @@
 FROM alpine:3.17
 
 RUN	apk update && apk upgrade && \
-	apk add --no-cache nginx openssl apache2-utils
+	apk add --no-cache nginx openssl
 
 RUN	mkdir -p /etc/nginx/ssl
 RUN	mkdir -p /run/nginx
