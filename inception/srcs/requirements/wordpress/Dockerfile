@@ -52,9 +52,9 @@ RUN	mkdir -p /var/log/php-fpm && \
 	chown -R www-data:www-data /var/log/php-fpm && \
 	chmod -R 777 /var/log/php-fpm
 
-COPY ./tool/setup.sh /usr/local/bin/setup.sh
-RUN	chmod +x /usr/local/bin/setup.sh
+COPY ./tool/configure.sh /usr/local/bin/configure.sh
+RUN	chmod +x /usr/local/bin/configure.sh
 
-ENTRYPOINT ["setup.sh"]
+ENTRYPOINT ["configure.sh"]
 
 CMD ["php-fpm8", "--nodaemonize"]
