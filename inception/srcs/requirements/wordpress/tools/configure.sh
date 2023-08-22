@@ -5,6 +5,7 @@ if [ -f "$CONF" ]; then
     echo "wordpress already configured"
 else
     # Start PHP-FPM service
+    echo "ciao!!!!!!!"
     php-fpm7.3 -D
 
     # Delay to allow PHP-FPM to start
