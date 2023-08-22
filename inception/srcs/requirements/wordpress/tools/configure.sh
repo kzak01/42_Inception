@@ -6,12 +6,13 @@ if [ -f "$CONF" ]; then
 else
     # Start PHP-FPM service
     echo "ciao!!!!!!!"
-    php-fpm7.3 -D
+    php-fpm8 -D
 
     # Delay to allow PHP-FPM to start
-    sleep 5
+    # sleep 5
 
     # Configure WordPress
+    echo "configure wp"
     cd /var/www/html/
     wp core download --allow-root
     wp config create --dbname=$MARIADB_DATABASE_NAME --dbuser=$MARIADB_USER --dbpass=$MARIADB_PASS --dbhost=$MARIADB_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
@@ -21,8 +22,8 @@ else
     # wp theme activate twentytwentythree --allow-root
 
     # Stop PHP-FPM service
-    pkill php-fpm7.3
+    pkill php-fpm8
 fi
 
 echo "Wordpress-PHP starting"
-php-fpm7.3 -F
+php-fpm8 -F
