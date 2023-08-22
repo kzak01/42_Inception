@@ -1,23 +1,24 @@
 FROM alpine:3.17
 
-RUN	apk update && apk upgrade && \
-	apk add --no-cache nginx openssl
+RUN apk update && apk upgrade && apk add --no-cache nginx
+
+COPY ./conf/nginx.conf /etc/nginx/conf.d
 
 RUN	mkdir -p /etc/nginx/ssl
+
+RUN apk add openssl \
+	&& mkdir /etc/nginx/ssl \
+	&& cd /etc/nginx/ssl \
+	&& openssl req -x509 \
+			-nodes \
+			-subj "/C=IT/ST=Italy/L=Rome/O=42Rome/OU=$USER/CN=$USER" \
+			-out inception.crt \
+			-keyout inception.key \
+	&& chmod +r nginx.crt nginx.key
+
 RUN	mkdir -p /run/nginx
 RUN	mkdir -p /var/www/html
 
-RUN	openssl req -newkey rsa:2048 \
-	-x509 \
-	-sha256 \
-	-days 365 \
-	-nodes \
-	-keyout /etc/nginx/ssl/inception.key \
-	-out /etc/nginx/ssl/inception.pem \
-	-subj "/C=IT/ST=Italy/L=Rome/O=42Rome/OU=$USER/CN=$USER"
-
-COPY conf/nginx.conf /etc/nginx/conf.d
-
-EXPOSE 443
+WORKDIR /var/www/html
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
