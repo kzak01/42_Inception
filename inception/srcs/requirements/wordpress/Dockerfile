@@ -1,34 +1,19 @@
-FROM debian:buster
+FROM alpine:3.17
 
-RUN apt-get update && apt-get -y install \
-	wget \
-	curl \
-	bash \
-	php \
-	php-cgi \
-	php-mysql \
-	php-fpm \
-	php-pdo \
-	php-gd php-cli \
-	php-mbstring \
-	redis \
-	php-redis \
-	&& rm -rf /var/lib/apt/lists/* && \
-	mkdir -p /var/www/html && \
-	chown -R www-data:www-data /var/www/html && \
-	cd /var/www/html && find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \; && \
-	mkdir -p /run/php && chown www-data:www-data /run/php
+RUN	apk update && apk upgrade
+RUN	apk add curl php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer
+RUN	apk add php8-pecl-redis --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-	&& chmod +x wp-cli.phar \
-	&& mv wp-cli.phar /usr/local/bin/wp
+RUN	adduser -S nginx && addgroup -S nginx
 
-COPY conf/www.conf /etc/php/7.3/fpm/pool.d
+RUN	mkdir -p /var/www/html
 COPY tools/configure.sh /tmp/configure.sh
-RUN chmod +x /tmp/configure.sh
+COPY conf/www.conf	/etc/php8/php-fpm.d/www.conf
 
-WORKDIR	/var/www/html
+RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+		chmod +x wp-cli.phar && \
+		mv wp-cli.phar /usr/local/bin/wp
+
+WORKDIR	/var/www/html/wordpress
 
 ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
-
-# -D -H -h /var/www/html -s /sbin/nologin -G nginx inazanf
