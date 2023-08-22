@@ -6,4 +6,6 @@ RUN	apk update && apk upgrade && apk add --no-cache \
 
 COPY ./tools/configure.sh /tmp/configure.sh
 
+EXPOSE 3306
+
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
