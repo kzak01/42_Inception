@@ -52,7 +52,7 @@ RUN	mkdir -p /var/log/php-fpm && \
 	chown -R www-data:www-data /var/log/php-fpm && \
 	chmod -R 777 /var/log/php-fpm
 
-COPY ./tool/configure.sh /usr/local/bin/configure.sh
+COPY ./tools/configure.sh /usr/local/bin/configure.sh
 RUN	chmod +x /usr/local/bin/configure.sh
 
 ENTRYPOINT ["configure.sh"]
