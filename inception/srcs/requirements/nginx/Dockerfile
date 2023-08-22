@@ -16,7 +16,7 @@ RUN	openssl req -newkey rsa:2048 \
 	-out /etc/nginx/ssl/inception.pem \
 	-subj "/C=IT/ST=Italy/L=Rome/O=42Rome/OU=$USER/CN=$USER"
 
-COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
-# COPY conf/nginx.conf /etc/nginx/conf.d
+# COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx.conf /etc/nginx/conf.d
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
