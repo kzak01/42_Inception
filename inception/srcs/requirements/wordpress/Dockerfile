@@ -52,9 +52,9 @@ RUN	mkdir -p /var/log/php-fpm && \
 	chown -R nginx:nginx /var/log/php-fpm && \
 	chmod -R 777 /var/log/php-fpm
 
-COPY ./tools/configure.sh /usr/local/bin/configure.sh
-RUN	chmod +x /usr/local/bin/configure.sh
+COPY ./tools/configure.sh /tmp/configure.sh
+RUN	chmod +x /tmp/configure.sh
 
-ENTRYPOINT ["configure.sh"]
+ENTRYPOINT ["sh", "/tmp/configure.sh"]
 
 CMD ["php-fpm8", "--nodaemonize"]
