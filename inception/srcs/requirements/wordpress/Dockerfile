@@ -18,7 +18,7 @@
 
 # ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
-FROM alpine:3.16
+FROM alpine:3.17
 
 RUN apk update && apk upgrade && apk add --no-cache \
 		php8 \
