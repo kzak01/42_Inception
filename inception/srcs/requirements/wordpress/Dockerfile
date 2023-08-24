@@ -12,9 +12,9 @@ COPY conf/www.conf	/etc/php8/php-fpm.d/www.conf
 
 RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 		chmod +x wp-cli.phar && \
-		mv wp-cli.phar /usr/local/bin/wp
+		cp wp-cli.phar /usr/local/bin/wp
 
-# WORKDIR	/var/www/html/wordpress
+WORKDIR	/var/www/html
 
 ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
