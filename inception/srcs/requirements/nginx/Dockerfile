@@ -8,7 +8,7 @@ RUN mkdir -p /etc/nginx/ssl && cd /etc/nginx/ssl && \
 	openssl req -x509 \
 		-nodes \
 		-subj "/C=IT/L=Rome/O=42Roma/OU=student/CN=$USERNAME.42.fr" \
-		-out nginx.pem \
+		-out nginx.crt \
 		-keyout nginx.key\
 	&& chmod +r nginx.crt nginx.key
 	
