@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 RUN apk update && apk upgrade && apk add --no-cache \
 		php81 \
@@ -47,4 +47,4 @@ RUN	chmod +x /tmp/configure.sh
 
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
 
-# CMD ["php-fpm81", "--nodaemonize"]
+CMD ["php-fpm81", "--nodaemonize"]
