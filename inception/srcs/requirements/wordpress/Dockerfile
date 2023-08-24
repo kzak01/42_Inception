@@ -4,7 +4,7 @@ RUN	apk update && apk upgrade
 RUN	apk add curl php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer
 RUN	apk add php8-pecl-redis --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 
-# RUN	adduser -S nginx && addgroup -S nginx
+RUN	adduser -S nginx && addgroup -S nginx
 
 RUN	mkdir -p /var/www/html
 COPY tools/configure.sh /tmp/configure.sh
