@@ -4,8 +4,6 @@ while ! mariadb -h $MARIADB_HOST -u $MARIADB_USER -p$MARIADB_PASS $MARIADB_DATAB
 	sleep 1 
 done 
 
-# mkdir -p /var/www
-# mkdir -p /var/www/html
 cd /var/www/html
 
 if [ -f "wp-config.php" ]; then
