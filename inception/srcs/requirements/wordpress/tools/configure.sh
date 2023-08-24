@@ -38,5 +38,5 @@ else
 		--allow-root
 fi
 
-# exec "$@"
-/usr/sbin/php-fpm81 -F
+exec "$@"
+# /usr/sbin/php-fpm81 -F
