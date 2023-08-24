@@ -18,7 +18,7 @@
 
 # ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
-FROM alpine:3.17
+FROM alpine:3.16
 
 RUN apk update && apk upgrade && apk add --no-cache \
 		php8 \
@@ -38,7 +38,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
 		wget 
 
 RUN adduser -S nginx && addgroup -S nginx
-COPY ./conf/php-fpm.conf /etc/php8/php-fpm.conf
+# COPY ./conf/php-fpm.conf /etc/php8/php-fpm.conf
 COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
