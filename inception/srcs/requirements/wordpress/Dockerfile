@@ -1,60 +1,60 @@
-# FROM alpine:3.17
+FROM alpine:3.17
 
-# RUN	apk update && apk upgrade
-# RUN	apk add curl php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer
-# RUN	apk add php8-pecl-redis --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN	apk update && apk upgrade
+RUN	apk add curl php php-fpm php-mysqli php-curl php-dom php-exif php-fileinfo php-xml php-zip php-phar php-tokenizer
+RUN	apk add php8-pecl-redis --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 
 # RUN	adduser -S nginx && addgroup -S nginx
 
-# RUN	mkdir -p /var/www/html
-# COPY tools/configure.sh /tmp/configure.sh
-# COPY conf/www.conf	/etc/php8/php-fpm.d/www.conf
+RUN	mkdir -p /var/www/html
+COPY tools/configure.sh /tmp/configure.sh
+COPY conf/www.conf	/etc/php8/php-fpm.d/www.conf
 
-# RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-# 		chmod +x wp-cli.phar && \
-# 		mv wp-cli.phar /usr/local/bin/wp
+RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+		chmod +x wp-cli.phar && \
+		mv wp-cli.phar /usr/local/bin/wp
 
-# WORKDIR	/var/www/html/wordpress
+WORKDIR	/var/www/html/wordpress
 
-# ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
+ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
-FROM alpine:3.16
+# FROM alpine:3.16
 
-RUN apk update && apk upgrade && apk add --no-cache \
-		php8 \
-		php8-fpm\
-		php8-mysqli\
-		php8-opcache\
-		php8-curl\
-		php8-mbstring\
-		php8-intl\
-		php8-xml\
-		php8-zip\
-		php8-openssl\
-		php8-phar\
-		mariadb-client \
-		fcgi \
-		curl \
-		wget 
+# RUN apk update && apk upgrade && apk add --no-cache \
+# 		php8 \
+# 		php8-fpm\
+# 		php8-mysqli\
+# 		php8-opcache\
+# 		php8-curl\
+# 		php8-mbstring\
+# 		php8-intl\
+# 		php8-xml\
+# 		php8-zip\
+# 		php8-openssl\
+# 		php8-phar\
+# 		mariadb-client \
+# 		fcgi \
+# 		curl \
+# 		wget 
 
-RUN adduser -S nginx && addgroup -S nginx
-# COPY ./conf/php-fpm.conf /etc/php8/php-fpm.conf
-COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
+# RUN adduser -S nginx && addgroup -S nginx
+# # COPY ./conf/php-fpm.conf /etc/php8/php-fpm.conf
+# COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-	chmod +x wp-cli.phar && \
-	mv wp-cli.phar /usr/local/bin/wp && \
-	chmod +x /usr/local/bin/wp
+# RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+# 	chmod +x wp-cli.phar && \
+# 	mv wp-cli.phar /usr/local/bin/wp && \
+# 	chmod +x /usr/local/bin/wp
 
-RUN	mkdir -p /var/log/php-fpm && \
-	touch /var/log/php-fpm/error.log && \
-	touch /var/log/php-fpm/access.log && \
-	chown -R nginx:nginx /var/log/php-fpm && \
-	chmod -R 777 /var/log/php-fpm
+# RUN	mkdir -p /var/log/php-fpm && \
+# 	touch /var/log/php-fpm/error.log && \
+# 	touch /var/log/php-fpm/access.log && \
+# 	chown -R nginx:nginx /var/log/php-fpm && \
+# 	chmod -R 777 /var/log/php-fpm
 
-COPY ./tools/configure.sh /tmp/configure.sh
-RUN	chmod +x /tmp/configure.sh
+# COPY ./tools/configure.sh /tmp/configure.sh
+# RUN	chmod +x /tmp/configure.sh
 
-ENTRYPOINT ["sh", "/tmp/configure.sh"]
+# ENTRYPOINT ["sh", "/tmp/configure.sh"]
 
-CMD ["php-fpm8", "--nodaemonize"]
+# CMD ["php-fpm8", "--nodaemonize"]
