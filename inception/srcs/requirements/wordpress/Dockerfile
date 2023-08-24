@@ -14,7 +14,7 @@ RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 		chmod +x wp-cli.phar && \
 		mv wp-cli.phar /usr/local/bin/wp
 
-WORKDIR	/var/www/html/wordpress
+# WORKDIR	/var/www/html/wordpress
 
 ENTRYPOINT [ "sh", "/tmp/configure.sh" ]
 
