@@ -1,17 +1,17 @@
 FROM alpine:3.17
 
 RUN apk update && apk upgrade && apk add --no-cache \
-		php8 \
-		php8-fpm\
-		php8-mysqli\
-		php8-opcache\
-		php8-curl\
-		php8-mbstring\
-		php8-intl\
-		php8-xml\
-		php8-zip\
-		php8-openssl\
-		php8-phar\
+		# php8 \
+		# php8-fpm\
+		# php8-mysqli\
+		# php8-opcache\
+		# php8-curl\
+		# php8-mbstring\
+		# php8-intl\
+		# php8-xml\
+		# php8-zip\
+		# php8-openssl\
+		# php8-phar\
 		mariadb-client \
 		fcgi \
 		curl \
