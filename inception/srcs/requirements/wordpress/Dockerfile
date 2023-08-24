@@ -29,7 +29,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
 		wget
 
 RUN adduser -S nginx && addgroup -S nginx
-COPY ./conf/www.conf /etc/php8/php-fpm.d/www.conf
+COPY ./conf/www.conf /etc/php81/php-fpm.d/www.conf
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	chmod +x wp-cli.phar && \
