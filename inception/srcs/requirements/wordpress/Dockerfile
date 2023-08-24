@@ -1,7 +1,7 @@
 FROM alpine:3.17
 
 RUN apk update && apk upgrade && apk add --no-cache \
-		# php8 \
+		php8 \
 		# php8-fpm\
 		# php8-mysqli\
 		# php8-opcache\
