@@ -47,4 +47,4 @@ RUN	chmod +x /tmp/configure.sh
 
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
 
-CMD ["php-fpm81", "--nodaemonize"]
+# CMD ["php-fpm81", "--nodaemonize"]
