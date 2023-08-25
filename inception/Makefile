@@ -5,6 +5,10 @@ all:
 	sudo mkdir -p ~/data/wordpress
 	sudo docker-compose -f srcs/docker-compose.yaml up --build
 
+# Target to run the container
+up:
+	sudo docker-compose -f srcs/docker-compose.yaml up
+
 # Target to stop the container
 stop:
 	sudo docker-compose -f srcs/docker-compose.yaml down
