@@ -86,4 +86,4 @@ RUN	chmod +x /tmp/configure.sh
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
 
 # Set the default command for the container to run PHP-FPM with specific options
-CMD ["php-fpm81", "--nodaemonize"]
+# CMD ["php-fpm81", "--nodaemonize"]
