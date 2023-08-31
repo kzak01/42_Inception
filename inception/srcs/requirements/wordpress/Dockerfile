@@ -42,6 +42,8 @@ RUN	mkdir -p /var/log/php-fpm && \
 COPY ./tools/configure.sh /tmp/configure.sh
 RUN	chmod +x /tmp/configure.sh
 
+# EXPOSE 9000
+
 # Set the entry point for the container to execute the configuration script
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
 

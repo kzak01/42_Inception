@@ -8,5 +8,7 @@ RUN apk update && apk upgrade && \
 # Copy the configuration script into the container's temporary directory
 COPY ./tools/configure.sh /tmp/configure.sh
 
+# EXPOSE 3306
+
 # Set the entrypoint to run the configuration script when the container starts
 ENTRYPOINT ["sh", "/tmp/configure.sh"]
