@@ -2,7 +2,7 @@
 
 # Wait until MariaDB is reachable before proceeding
 while ! mariadb -h $MARIADB_HOST -u $MARIADB_USER -p$MARIADB_PASS $MARIADB_DATABASE_NAME --silent; do
-	sleep 1 
+	sleep 20
 done 
 
 # Change the current directory to the WordPress installation directory
